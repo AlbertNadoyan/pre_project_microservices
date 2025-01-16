@@ -58,10 +58,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(Long id, UserRequest user) {
         User userById = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        userById.setName(user.getName());
-        userById.setSurname(user.getSurname());
-        userById.setEmail(user.getEmail());
-        userById.setAge(user.getAge());
+        if(user.getName() != null && !user.getName().isEmpty()){
+            userById.setName(user.getName());
+        }
+        if(user.getSurname() != null && !user.getSurname().isEmpty()){
+            userById.setSurname(user.getSurname());
+        }
+        if(user.getEmail() != null && !user.getEmail().isEmpty()){
+            userById.setEmail(user.getEmail());
+        }
+        if (user.getAge() != null) {
+            userById.setAge(user.getAge());
+        }
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             userById.setPassword(passwordEncoder.encode(user.getPassword()));
         }

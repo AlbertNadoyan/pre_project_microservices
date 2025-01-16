@@ -6,7 +6,7 @@ public class UserRequest {
     private String name;
     private String surname;
     private String email;
-    private int age;
+    private Integer age;
     private String password;
     private Set<String> roles;
 
@@ -34,11 +34,11 @@ public class UserRequest {
         this.email = email;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
