@@ -1,10 +1,53 @@
 spring:
+  application:
+    name: SpringBootHibernate
   datasource:
     url: jdbc:mysql://localhost:3306/spring_mvc_security
-    username: root
-    password: root
+    username:
+    password:
   liquibase:
     change-log: classpath:/db/changelog/migration.xml
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: audit-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      missing-topics-fatal: false
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.debug: true
 admin:
-  password: Syrena69$
-  username: albertnadoyan@gmail.com
+  password:
+  username:
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
