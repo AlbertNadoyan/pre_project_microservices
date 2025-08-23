@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+<h1>Users</h1>
+<table border="2">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>Role</th>
+    <th>Password</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}">ID</td>
+    <td th:text="${user.name}">Name</td>
+    <td th:text="${user.surname}">Surname</td>
+    <td th:text="${user.email}">Email</td>
+    <td th:text="${user.age}">Age</td>
+    <td>
+      <ul>
+        <li th:each="role: ${user.roles}" th:text="${role.rolesType}">Role</li>
+      </ul>
+    </td>
+    <td th:text="${user.password}">Password</td>
+    <td>
+      <a th:href="@{/admin/{id}(id=${user.id})}">View</a>
+      <a th:href="@{/admin/{id}/edit(id=${user.id})}">Edit</a>
+      <a th:href="@{/admin/delete/{id}(id=${user.id})}">DELETE</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/admin/add">Add New User</a>
+</body>
+</html>

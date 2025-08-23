@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View User</title>
+</head>
+<body>
+<h1>User Details</h1>
+<p>ID: <span th:text="${user.id}">User ID</span></p>
+<p>Name: <span th:text="${user.name}">User Name</span></p>
+<p>Surname: <span th:text="${user.surname}">User Surname</span></p>
+<p>Email: <span th:text="${user.email}">User Email</span></p>
+<p>Age: <span th:text="${user.age}">User Age</span></p>
+<p>Role: <span th:each="role: ${user.roles}" th:text="${role.rolesType}"></span></p>
+<p>Password: <span th:text="${user.age}">User Password</span></p>
+<a href="/admin">Back to User List</a>
+</body>
+</html>
